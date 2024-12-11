@@ -1,0 +1,55 @@
+<div class="task-list-page">
+	<h1 class="page-title">Список задач</h1>
+
+	<div class="filters">
+		<label class="filter">
+			Исполнитель:
+			<input class="filter-input" [(ngModel)]="filters.assignee" (input)="applyFilters()" />
+		</label>
+		<label class="filter">
+			Приоритет:
+			<select class="filter-select" [(ngModel)]="filters.priority" (change)="applyFilters()">
+				<option value="">Все</option>
+				<option value="critical">Critical</option>
+				<option value="high">High</option>
+				<option value="medium">Medium</option>
+				<option value="low">Low</option>
+			</select>
+		</label>
+		<label class="filter">
+			Тип:
+			<select class="filter-select" [(ngModel)]="filters.type" (change)="applyFilters()">
+				<option value="">Все</option>
+				<option value="bug">Bug</option>
+				<option value="task">Task</option>
+			</select>
+		</label>
+	</div>
+
+	<table class="task-table">
+		<thead>
+			<tr>
+				<th>Номер</th>
+				<th>Заголовок</th>
+				<th>Исполнитель</th>
+				<th>Приоритет</th>
+				<th>Тип</th>
+				<th>Дата обновления</th>
+				<th>Действия</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let task of tasks">
+				<td>{{ task.id }}</td>
+				<td>{{ task.title }}</td>
+				<td>{{ task.assignee }}</td>
+				<td class="priority {{ task.priority }}">{{ task.priority }}</td>
+				<td>{{ task.type }}</td>
+				<td>{{ task.updatedAt | date: 'short' }}</td>
+				<td>
+					<a class="edit-link" [routerLink]="['/edit', task.id]">Редактировать</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

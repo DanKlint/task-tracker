@@ -1,0 +1,27 @@
+<!-- <div class="task-list-container">
+	<div class="task-column" *ngFor="let status of statuses">
+		<h3>{{ status }}</h3>
+		<div *ngFor="let task of filterTasks(status)" class="task-card">
+			<p><b>Task </b>№{{ task.id }}</p>
+			<h4>{{ task.title }}</h4>
+			<p>{{ task.description }}</p>
+			<p><b>Ответственный:</b> {{ task.assignee }}</p>
+			<p><b>Приоритет:</b> {{ task.priority }}</p>
+			<p><b>Тип:</b> {{ task.type }}</p>
+		</div>
+	</div>
+</div> -->
+
+<div class="task-list-container">
+	<div class="task-column" *ngFor="let status of statuses" cdkDropList (cdkDropListDropped)="onDrop($event, status)">
+		<h3>{{ status }}</h3>
+		<div *ngFor="let task of filterTasks(status)" class="task-card" cdkDrag [cdkDragData]="task">
+			<p><b>Task </b>№{{ task.id }}</p>
+			<h4>{{ task.title }}</h4>
+			<p>{{ task.description }}</p>
+			<p><b>Ответственный:</b> {{ task.assignee }}</p>
+			<p><b>Приоритет:</b> {{ task.priority }}</p>
+			<p><b>Тип:</b> {{ task.type }}</p>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,46 @@
+<div class="edit-task-page">
+	<h1 class="page-title">Редактировать задачу</h1>
+
+	<form [formGroup]="taskForm" (ngSubmit)="saveTask()" class="task-form">
+		<div class="form-group">
+			<label for="title">Заголовок:</label>
+			<input id="title" formControlName="title" class="form-input" />
+		</div>
+		<div class="form-group">
+			<label for="description">Описание:</label>
+			<textarea id="description" formControlName="description" class="form-textarea"></textarea>
+		</div>
+		<div class="form-group">
+			<label for="assignee">Исполнитель:</label>
+			<input id="assignee" formControlName="assignee" class="form-input" />
+		</div>
+		<div class="form-group">
+			<label for="type">Тип:</label>
+			<select id="type" formControlName="type" class="form-select">
+				<option value="task">Task</option>
+				<option value="bug">Bug</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="priority">Приоритет:</label>
+			<select id="priority" formControlName="priority" class="form-select">
+				<option value="critical">Critical</option>
+				<option value="high">High</option>
+				<option value="medium">Medium</option>
+				<option value="low">Low</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="status">Статус:</label>
+			<!-- <input id="status" formControlName="status" class="form-input" /> -->
+			<select id="status" formControlName="status" class="form-select">
+				<option value="New">New</option>
+				<option value="In progress">In progress</option>
+				<option value="Resolved">Resolved</option>
+				<option value="Testing">Testing</option>
+				<option value="Done">Done</option>
+			</select>
+		</div>
+		<button type="submit" [disabled]="!taskForm.valid" class="submit-button">Сохранить</button>
+	</form>
+</div>
